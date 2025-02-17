@@ -17,5 +17,11 @@ public class InstanceMethodReference {
         Sayable sayable2 = new InstanceMethodReference()::saySomething; // You can use anonymous object also
         // Calling interface method
         sayable2.say();
+
+        Sayable sayable3 = () -> {
+            System.out.println("saying --lamba impl");
+        };
+
+        sayable3.say();
     }
 }
