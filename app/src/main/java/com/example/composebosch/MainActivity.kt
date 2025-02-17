@@ -16,9 +16,12 @@ import com.example.composebosch.ui.theme.ComposeboschTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var myStudent:Student = Student("abdul",123,true,"blr")
-        println( myStudent.name)
-        myStudent.name = "ansari"
+        var myStudent :Student  //declaration
+        myStudent = Student("abdul",123,true,"blr")//instantiation
+        println( myStudent.name) //initialization
+       // myStudent.name = "ansari"
+
+
         enableEdgeToEdge()
         setContent {
             ComposeboschTheme {
