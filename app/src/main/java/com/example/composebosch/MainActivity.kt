@@ -4,69 +4,50 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import com.example.composebosch.ui.theme.ComposeboschTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var myStudent :Student
+       // myStudent = Student("abdul",123,true,"blr")
+       // println( myStudent.name)
+       // myStudent.name = "ansari"
+
+
+        enableEdgeToEdge()
         setContent {
             ComposeboschTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    GreetingText(message = "Happy Birthday abc!", from = "From abdul")
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
     }
 }
-
+//other composable fns
 @Composable
-fun GreetingText(message: String,from: String, modifier: Modifier = Modifier) {
-
-    Column {
-        Text(
-            text = message,
-            modifier = modifier,
-            fontSize = 100.sp,
-            lineHeight = 116.sp
-        )
-        Text(
-            text = from,
-            fontSize = 36.sp
-        )
-    }
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
 }
-
-
-////emits a UI widget[text widget]
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier,
-//        fontSize = 100.sp,
-//        lineHeight = 116.sp
-//    )
-//}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ComposeboschTheme {
-        GreetingText(message = "happy birthday sam","emma")
+        Greeting("Android")
     }
 }
