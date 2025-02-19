@@ -1,5 +1,6 @@
 package com.example.composebosch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,5 +27,7 @@ public  static String TAG = HomeActivity.class.getSimpleName();
         Log.i(TAG,"button was clicked");
         ConstraintLayout constraintLayout = findViewById(R.id.conslayout);
         Snackbar.make(constraintLayout,"button was clicked",Snackbar.LENGTH_SHORT).show();
+        Intent drIntent = new Intent(this,DiceRollActivity.class);
+        startActivity(drIntent);
     }
 }
