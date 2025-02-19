@@ -2,5 +2,7 @@
     <string name="app_name">Composebosch</string>
     <string name="greeting">Happy Birthday abc!</string>
     <string name="from">from abdul</string>
+    <string name="title_activity_dice_roll">DiceRollActivity</string>
+    <string name="roll">Roll</string>
 
 </resources>

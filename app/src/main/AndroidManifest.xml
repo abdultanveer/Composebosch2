@@ -13,8 +13,10 @@
         android:theme="@style/Theme.Composebosch"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" >
+            android:name=".DiceRollActivity"
+            android:exported="true"
+            android:label="@string/title_activity_dice_roll"
+            android:theme="@style/Theme.Composebosch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,12 +24,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".HomeActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Composebosch">
-
-        </activity>
+            android:theme="@style/Theme.Composebosch"></activity>
     </application>
 
 </manifest>
