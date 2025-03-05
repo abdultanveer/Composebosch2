@@ -1,3 +1,5 @@
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -11,28 +13,29 @@ import kotlin.time.measureTime
          runBlocking { //synchronous
 
              println("weather forecast")
-             launch {
+           val forecast: Deferred<String> =  async {    //forecast="sunny"
                  //this coroutine[folder] is getting launched on  a seperate thread and starting the suspendable fn
-                 printForecast()
+                 getForecast()
              }
-             launch {
-                 printTemp()
+             val temp = async {
+                 getTemp()
              }
         println("end of runblocking")
+             println("${forecast.await()}  ${temp.await()}")
          }
      }
     println("time taken -- ${time} mseconds")
 }
 
-suspend fun printForecast(){
+suspend fun getForecast():String{
     println("in printForecast ")
     delay(5000) //this function is suspended for 1 sec
-    println("Sunny")
+    return "Sunny"
 }
 
-suspend fun printTemp(){
+suspend fun getTemp():String{
     println("in printTemp ")
 
     delay(1000)
-    println("30\u00b0c")
+    return "30\u00b0c"
 }
