@@ -7,8 +7,21 @@ import kotlinx.coroutines.runBlocking
      runBlocking { //synchronous
 
          println("weather forecast")
-         delay(5000) //this function is suspended for 1 sec
-         println("Sunny")
+         printForecast()
+         printTemp()
 
      }
+}
+
+suspend fun printForecast(){
+    println("in printForecast ")
+    delay(5000) //this function is suspended for 1 sec
+    println("Sunny")
+}
+
+suspend fun printTemp(){
+    println("in printTemp ")
+
+    delay(1000)
+    println("30\u00b0c")
 }
