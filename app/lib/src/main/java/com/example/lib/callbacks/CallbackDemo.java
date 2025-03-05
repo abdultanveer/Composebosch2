@@ -10,7 +10,7 @@ public class CallbackDemo {
     //radio h/w data internet--raise interrupt
     void muraliAdd(int a, int b,MyPhNumber callbackPhno){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(5000);//unsure
             callbackPhno.onSuccess(a+b);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
