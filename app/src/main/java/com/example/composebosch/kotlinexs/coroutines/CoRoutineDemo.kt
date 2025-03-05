@@ -2,7 +2,9 @@ package com.example.composebosch.kotlinexs.coroutines
 
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -18,19 +20,13 @@ class CoRoutineDemo {
  fun main() {
     var time = measureTime {
 
+        //GlobalScope.launch {  }
+
      runBlocking {   //synchrounos
 
          println("weather forecast")
-         val forecast :Deferred<String> = async {  //like launch, async is also a coroutine
-             getForecast()
-
-         }
-
-         val temp :Deferred<String> = async {
-             getTemp()
-
-         }
-         println("${forecast.await()}  ${temp.await()}")
+        // val a : Int = 10
+        println(getWeatherReport())
          println("end of runblocking")
          }
      }
@@ -38,10 +34,18 @@ class CoRoutineDemo {
 
 }
 
+suspend fun getWeatherReport()  = coroutineScope{
+    //2 subtasks
+    val forecast = async {   getForecast()}
+    val temp =  async {  getTemp() }
 
+    "${forecast.await()} ${temp.await()}"
+
+}
 
 
  suspend fun getForecast():String{
+     var a = 10
      println("entered printforecast")
     delay(5000)
      return "Sunny"
