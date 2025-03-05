@@ -1,5 +1,6 @@
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -9,22 +10,24 @@ import kotlin.time.measureTime
 //only a suspend fn can invoke another suspend fn
 //or a coroutine can invoke a suspend fn
  fun main() {
-     val time = measureTimeMillis {
+    // val time = measureTimeMillis {
          runBlocking { //synchronous
 
              println("weather forecast")
-           val forecast: Deferred<String> =  async {    //forecast="sunny"
-                 //this coroutine[folder] is getting launched on  a seperate thread and starting the suspendable fn
-                 getForecast()
-             }
-             val temp = async {
-                 getTemp()
-             }
-        println("end of runblocking")
-             println("${forecast.await()}  ${temp.await()}")
-         }
+             println(getWeatherReport())
+             println("done with runblocking")
      }
-    println("time taken -- ${time} mseconds")
+}
+
+suspend fun getWeatherReport() = coroutineScope{
+    //get forecast --webservice
+    val forecast = async { getForecast()}
+    //get the temp  --query db
+    val temp = async {  getTemp()}
+    //return the concatenated data
+
+    "${forecast.await()} ${temp.await()}"
+
 }
 
 suspend fun getForecast():String{
