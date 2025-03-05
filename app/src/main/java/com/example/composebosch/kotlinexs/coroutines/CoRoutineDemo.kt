@@ -1,16 +1,27 @@
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.system.measureTimeMillis
+import kotlin.time.measureTime
 
 //only a suspend fn can invoke another suspend fn
 //or a coroutine can invoke a suspend fn
  fun main() {
-     runBlocking { //synchronous
+     val time = measureTimeMillis {
+         runBlocking { //synchronous
 
-         println("weather forecast")
-         printForecast()
-         printTemp()
-
+             println("weather forecast")
+             launch {
+                 //this coroutine[folder] is getting launched on  a seperate thread and starting the suspendable fn
+                 printForecast()
+             }
+             launch {
+                 printTemp()
+             }
+        println("end of runblocking")
+         }
      }
+    println("time taken -- ${time} mseconds")
 }
 
 suspend fun printForecast(){
