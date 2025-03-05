@@ -2,6 +2,7 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
@@ -20,19 +21,19 @@ import kotlinx.coroutines.runBlocking
 
 suspend fun getWeatherReport() = coroutineScope{
     //get forecast --webservice
-    val forecast = async { getForecast()}
+    val forecast = async { getForecast()}  //getting from a db
     //get the temp  --query db
-    val temp = async {
-        try {
-            getTemp()
-        } catch (e: AssertionError) {
-          println("caught an exception$e")
-          "{ No temp found}"
-        }
-    }
-    //return the concatenated data
 
-    "${forecast.await()} ${temp.await()}"
+//    val job = launch { getTemp() }
+//    job.cancel()
+    val temp = async {
+            getTemp() //from a webservice
+    }
+
+    delay(2000)
+    temp.cancel()
+
+    "${forecast.await()} }"
 
 }
 
@@ -46,6 +47,6 @@ suspend fun getTemp():String{
     println("in printTemp ")
 
     delay(1000)
-    throw AssertionError("invalid temp")
+   // throw AssertionError("invalid temp")
     return "30\u00b0c"
 }
