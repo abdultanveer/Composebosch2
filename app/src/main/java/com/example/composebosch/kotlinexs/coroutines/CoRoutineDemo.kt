@@ -1,8 +1,9 @@
 package com.example.composebosch.kotlinexs.coroutines
 
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlin.system.measureTimeMillis
+import kotlin.time.measureTime
 
 class CoRoutineDemo {
 }
@@ -12,14 +13,21 @@ class CoRoutineDemo {
 //or a coroutine can invoke a suspendable fn
 //https://play.kotlinlang.org/byExample/04_functional/01_Higher-Order%20Functions
  fun main() {
-val time = measureTimeMillis {
-    runBlocking {   //synchrounos
-        println("weather forecast")
-        printForecast()
-        printTemp()
-    }
-}
-println("Execution time ${time/1000} seconds")
+    var time = measureTime {
+
+     runBlocking {   //synchrounos
+             println("weather forecast")
+         launch { //async
+             printForecast()
+         }
+         launch {
+             printTemp()
+         }
+         println("end of runblocking")
+         }
+     }
+    println("execution time is $time ms")
+
 }
 
 
