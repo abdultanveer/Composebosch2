@@ -2,10 +2,8 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlin.system.measureTimeMillis
-import kotlin.time.measureTime
+
 
 //only a suspend fn can invoke another suspend fn
 //or a coroutine can invoke a suspend fn
@@ -14,7 +12,11 @@ import kotlin.time.measureTime
          runBlocking { //synchronous
 
              println("weather forecast")
-             println(getWeatherReport())
+             try {
+                 println(getWeatherReport())
+             } catch (e: AssertionError) {
+                 TODO("Not yet implemented")
+             }
              println("done with runblocking")
      }
 }
@@ -40,5 +42,6 @@ suspend fun getTemp():String{
     println("in printTemp ")
 
     delay(1000)
+    throw AssertionError("invalid temp")
     return "30\u00b0c"
 }
