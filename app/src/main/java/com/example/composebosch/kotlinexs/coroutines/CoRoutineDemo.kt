@@ -15,8 +15,8 @@ import kotlinx.coroutines.runBlocking
              try {
                  println(getWeatherReport())
              } catch (e: AssertionError) {
-                 TODO("Not yet implemented")
-             }
+                 println("caught an exception in runblocking $e")
+                 println("weather report unavailable at this time")             }
              println("done with runblocking")
      }
 }
