@@ -13,11 +13,9 @@ import kotlinx.coroutines.runBlocking
          runBlocking { //synchronous
 
              println("weather forecast")
-             try {
+
                  println(getWeatherReport())
-             } catch (e: AssertionError) {
-                 println("report not available at this time")
-             }
+
 
              println("done with runblocking")
      }
@@ -31,7 +29,12 @@ suspend fun getWeatherReport() = coroutineScope{
 //    val job = launch { getTemp() }
 //    job.cancel()
     val temp = async {
-            getTemp() //from a webservice
+            try {
+                getTemp() //from a webservice
+            } catch (e: AssertionError) {
+                println("caught exception $e")
+                "{no temp found}"
+            }
     }
 
     delay(2000)
