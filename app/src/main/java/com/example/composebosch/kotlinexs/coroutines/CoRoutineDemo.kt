@@ -13,7 +13,11 @@ import kotlinx.coroutines.runBlocking
          runBlocking { //synchronous
 
              println("weather forecast")
+             try {
                  println(getWeatherReport())
+             } catch (e: AssertionError) {
+                 println("report not available at this time")
+             }
 
              println("done with runblocking")
      }
@@ -47,6 +51,6 @@ suspend fun getTemp():String{
     println("in printTemp ")
 
     delay(1000)
-   // throw AssertionError("invalid temp")
+   throw AssertionError("invalid temp")
     return "30\u00b0c"
 }
