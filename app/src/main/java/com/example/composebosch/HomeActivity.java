@@ -28,6 +28,7 @@ public  static String TAG = HomeActivity.class.getSimpleName();
         ConstraintLayout constraintLayout = findViewById(R.id.conslayout);
         Snackbar.make(constraintLayout,"button was clicked",Snackbar.LENGTH_SHORT).show();
         Intent drIntent = new Intent(this,DiceRollActivity.class);
+        drIntent.putExtra("pn","987654123456");
         startActivity(drIntent);
     }
 }

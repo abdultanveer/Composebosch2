@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
        // myStudent.name = "ansari"
 
 
-        enableEdgeToEdge()
         setContent {
 
             ComposeboschTheme {
