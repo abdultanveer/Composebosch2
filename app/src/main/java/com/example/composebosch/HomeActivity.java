@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
@@ -18,11 +20,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class HomeActivity extends AppCompatActivity {
 public  static String TAG = HomeActivity.class.getSimpleName();
+TextView textView;
+
+public static  int REQUEST_CODE = 123;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        textView = findViewById(R.id.textView);
     }
 
     public void clickHandler(View view) {
@@ -52,5 +57,20 @@ public  static String TAG = HomeActivity.class.getSimpleName();
 
     public void setAlarm(View view) {
         createAlarm("bosch2batch",14,57);
+    }
+
+    public void getContact(View view) {
+        Intent cIntent = new Intent(this,ContactActivity.class);
+        startActivityForResult(cIntent,REQUEST_CODE);
+    }
+
+    //common return -- receptionist
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent resIntent) {
+        super.onActivityResult(requestCode, resultCode, resIntent);
+        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            String contact = resIntent.getStringExtra("ph");
+            textView.setText(contact);
+        }
     }
 }
