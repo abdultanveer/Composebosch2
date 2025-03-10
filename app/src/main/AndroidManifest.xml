@@ -15,21 +15,28 @@
         android:theme="@style/Theme.Composebosch"
         tools:targetApi="31">
         <activity
+            android:name=".BottomNavActivity"
+            android:exported="true"
+            android:label="@string/title_activity_bottom_nav" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".ContactActivity"
             android:exported="false" />
         <activity
             android:name=".DiceRollActivity"
             android:exported="true"
             android:label="@string/title_activity_dice_roll"
-            android:theme="@style/Theme.Composebosch"></activity>
+            android:theme="@style/Theme.Composebosch" />
         <activity
             android:name=".HomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
