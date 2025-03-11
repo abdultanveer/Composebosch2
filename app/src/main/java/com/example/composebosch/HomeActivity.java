@@ -40,7 +40,8 @@ public static  int REQUEST_CODE = 123;
     }
 
     public void dialNo(View view) {
-        Intent dIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:987654312"));//implicit intent
+        Intent dIntent = new Intent(Intent.ACTION_DIAL,
+                Uri.parse("tel:987654312"));//implicit intent
         startActivity(dIntent);
     }
 
@@ -73,4 +74,18 @@ public static  int REQUEST_CODE = 123;
             textView.setText(contact);
         }
     }
+
+    public void launchCalendar(View view) {
+        Intent calIntent = new Intent("ineed.water");
+        startActivity(calIntent);
+    }
 }
+
+// <activity
+//android:name=".CalendarActivity"
+//android:exported="true" >
+//            <intent-filter>
+//                <action android:name="ineed.water"/>
+//                <category android:name="android.intent.category.DEFAULT"/>
+//            </intent-filter>
+//        </activity>
