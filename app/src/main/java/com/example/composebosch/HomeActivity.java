@@ -76,7 +76,7 @@ public static  int REQUEST_CODE = 123;
     }
 
     public void launchCalendar(View view) {
-        Intent calIntent = new Intent("ineed.water");
+        Intent calIntent = new Intent("bosch.calendar.launch");
         startActivity(calIntent);
     }
 }
