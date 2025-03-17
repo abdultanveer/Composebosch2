@@ -7,6 +7,8 @@ import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
 
+
+//incoming/outgoing -- log the phno of the caller
 class SmsMsgReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
